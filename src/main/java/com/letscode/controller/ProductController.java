@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/category")
-    public Flux<Product> findProductsByCategory(@RequestParam String category) {
+    public Flux<Product> findProductsByCategory(@RequestBody String category) {
         return productService.findByCategory(category);
     }
 
