@@ -4,6 +4,7 @@ import com.letscode.dto.ProductRequest;
 import com.letscode.model.Product;
 import com.letscode.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -30,9 +31,9 @@ public class ProductController {
         return productService.findById(id);
     }
 
-    @GetMapping("/category")
-    public Flux<Product> findProductsByCategory(@RequestBody String category) {
-        return productService.findByCategory(category);
+    @GetMapping("/category/{category}")
+    public Flux<Product> findProductsByCategory(@PathVariable String category) {
+        return productService.findByCategory(StringUtils.capitalize(category));
     }
 
     @DeleteMapping("/{id}")
