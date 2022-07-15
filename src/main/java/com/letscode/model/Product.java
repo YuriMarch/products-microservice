@@ -9,36 +9,38 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter @Setter
 @NoArgsConstructor
 @ToString
+@Entity
 public class Product {
 
     @Id
     private String id;
 
-    @NotNull
+    @NotBlank
     private String name;
 
-    @NotNull
+    @NotBlank
     @Min(value = 0L, message = "The value must be positive.")
     private BigDecimal price;
 
-    @NotNull
+    @NotBlank
     @Min(value = 0, message = "The value must be positive.")
     private Integer quantity;
 
     private String description;
 
-    @NotNull
+    @NotBlank
     private Size size;
 
-    @NotNull
+    @NotBlank
     private Category category;
 
     public static Product fromRequest(ProductRequest productRequest) {
